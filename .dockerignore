@@ -1,0 +1,15 @@
+**/.git
+**/.gitignore
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/out
+**/TestResults
+**/*.md
+**/*.txt
+**/docker-compose*
+**/.dockerignore
+**/Dockerfile*
+!src/BlueNose.McpServer/Dockerfile
+!src/BlueNose.ValidationWeb/Dockerfile

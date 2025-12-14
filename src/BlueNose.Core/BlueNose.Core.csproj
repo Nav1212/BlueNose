@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>BlueNose.Core</RootNamespace>
+    <AssemblyName>BlueNose.Core</AssemblyName>
+    <Description>Shared FHIR logic, validation services, and API models for BlueNose platform</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- FHIR R4 (default) - R5 support can be added via configuration or separate project -->
+    <PackageReference Include="Hl7.Fhir.R4" />
+    <PackageReference Include="Firely.Fhir.Validation.R4" />
+    <PackageReference Include="Hl7.Fhir.Specification.R4" />
+    
+    <!-- Configuration -->
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+  </ItemGroup>
+
+</Project>

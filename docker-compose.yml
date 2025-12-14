@@ -1,0 +1,44 @@
+# Docker Compose for BlueNose FHIR Platform
+# Runs both the MCP Server and Validation Web API
+
+services:
+  validation-web:
+    build:
+      context: .
+      dockerfile: src/BlueNose.ValidationWeb/Dockerfile
+    container_name: bluenose-validation-web
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - BLUENOSE_Fhir__Version=R4
+      - BLUENOSE_Fhir__StrictValidation=false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - bluenose-network
+
+  # MCP Server is typically run interactively, but can be used for testing
+  mcp-server:
+    build:
+      context: .
+      dockerfile: src/BlueNose.McpServer/Dockerfile
+    container_name: bluenose-mcp-server
+    environment:
+      - BLUENOSE_Fhir__Version=R4
+    stdin_open: true
+    tty: true
+    networks:
+      - bluenose-network
+    # Note: MCP server uses stdio transport, so it's primarily for 
+    # interactive use or testing. For production MCP, use the 
+    # validation-web service with SSE transport at /mcp endpoint.
+
+networks:
+  bluenose-network:
+    driver: bridge

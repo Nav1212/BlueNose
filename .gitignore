@@ -1,0 +1,29 @@
+# Ignore build outputs
+bin/
+obj/
+out/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# NuGet
+packages/
+*.nupkg
+
+# Logs
+*.log
+logs/
+
+# Test results
+TestResults/
+coverage/
+
+# Docker
+.docker/
+
+# OS files
+.DS_Store
+Thumbs.db
